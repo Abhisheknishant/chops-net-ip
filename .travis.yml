@@ -13,128 +13,16 @@ common_sources: &all_sources
 
 matrix:
   include:
-
-    # 1/ Linux Clang Builds
-
     - os: linux
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-3.9']
-      env: COMPILER='clang++-3.9'
-
-    - os: linux
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-4.0']
-      env: COMPILER='clang++-4.0'
-
-    - os: linux
-      dist: bionic
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-5.0']
-      env: COMPILER='clang++-5.0'
-
-    - os: linux
-      dist: bionic
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-6.0']
-      env: COMPILER='clang++-6.0'
-
-    # 2/ Linux GCC Builds
-    - os: linux
-      compiler: gcc
-      addons:
-        apt:
-          sources: *all_sources
-          packages: ['g++-5']
-      env: COMPILER='g++-5'
-
-    - os: linux
-      compiler: gcc
-      addons: &gcc6
-        apt:
-          sources: *all_sources
-          packages: ['g++-6']
-      env: COMPILER='g++-6'
-
-    - os: linux
-      compiler: gcc
-      addons: &gcc7
-        apt:
-          sources: *all_sources
-          packages: ['g++-7']
-      env: COMPILER='g++-7'
-
-    - os: linux
-      compiler: gcc
-      addons: &gcc8
-        apt:
-          sources: *all_sources
-          packages: ['g++-8']
-      env: COMPILER='g++-8'
-
-    # 3b/ Linux C++14 Clang builds
-    # Note that we need newer libstdc++ for C++14 support
-    - os: linux
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-3.9', 'libstdc++-6-dev']
-      env: COMPILER='clang++-3.9' CPP17=1
-
-    - os: linux
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-4.0', 'libstdc++-6-dev']
-      env: COMPILER='clang++-4.0' CPP17=1
-
-    - os: linux
-      dist: bionic
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-5.0', 'libstdc++-6-dev']
-      env: COMPILER='clang++-5.0' CPP17=1
-
-    - os: linux
-      dist: bionic
-      compiler: clang
-      addons:
-          apt:
-              sources: *all_sources
-              packages: ['clang-6.0', 'libstdc++-6-dev']
-      env: COMPILER='clang++-6.0' CPP17=1
-
-
-    # 4a/ Linux C++14 GCC builds
-    - os: linux
-      compiler: gcc
-      addons: *gcc6
-      env: COMPILER='g++-6'
-
-    - os: linux
-      compiler: gcc
-      addons: *gcc7
-      env: COMPILER='g++-7'
-
-    - os: linux
+      arch: amd64
       compiler: gcc
       addons: *gcc8
       env: COMPILER='g++-8'
+    - os: linux
+      arch: arm64
+      compiler: gcc
+      addons: *gcc8
+      env: COMPILER='g++-8'     
 
 before install:
 
